@@ -5,7 +5,7 @@
 
 int main(){
     Point a;
-    std::cout << "Enter point coordinates (x y): ";
+    std::cout << "X, Y: ";
     read_console(a);
     
 }
