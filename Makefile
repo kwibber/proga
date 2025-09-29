@@ -4,5 +4,6 @@ main.o:
 	g++ -c main.cpp -o main.o
 func.o:
 	g++ -c func.cpp -o func.o
-
+clear:
+	rm -rf func.o main.o
 	
