@@ -109,10 +109,10 @@ bool Intersection_square_circle(Square &a, Circle &b){
     x2 = a.coordinates.x + a.side_length - b.coordinates.x;
     y1 = a.coordinates.y - b.coordinates.y;
     y2 = b.coordinates.y - (a.coordinates.y - a.side_length);
-    minl = min(x1 * x1, min(y1 * y1, min(x2 * x2, y2 * y2)));
-    maxl = max(x1 * x1 + y1 * y1, max(x1 * x1 + y2 * y2, max(x2 * x2 + y1 * y1, x2 * x2 + y2 * y2)));
+    minl = std::min(x1 * x1, std::min(y1 * y1, std::min(x2 * x2, y2 * y2)));
+    maxl = std::max(x1 * x1 + y1 * y1, std::max(x1 * x1 + y2 * y2, std::max(x2 * x2 + y1 * y1, x2 * x2 + y2 * y2)));
     if (point_affiliation_square(p_c, a)){
-        return (minl <= b.r * b.r && maxl >= b.r * b.r)
+        return (minl <= b.r * b.r && maxl >= b.r * b.r);
     } else if (point_on_line_square(p_c, a)) {
         return maxl >= b.r * b.r;
     } else{
