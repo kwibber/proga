@@ -20,6 +20,10 @@ bool point_on_line_square(Point &a, Square &c);
 bool Intersection_2_circle(Circle &a, Circle &b);
 bool Intersection_2_square(Square &a, Square &b);
 bool Intersection_square_circle(Square &a, Circle &b);
-
+bool circle_to_circle(Circle &a, Circle &b);
+bool square_to_square(Square &a, Square &b);
+bool point_to_circle(Point &a, Circle &b);
+bool square_to_circle(Square &a, Circle &b);
+bool circle_to_square(Circle &a, Square &b);
 
  #endif // FUNC_H

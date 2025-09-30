@@ -63,8 +63,27 @@ int main(){
         std::cout << "2 squares not intersect" << std::endl;
     }
     if (Intersection_square_circle(s1, c1)){
-        std::cout << "square and circle intersect" << std::endl;
+        std::cout << "square1 and circle1 intersect" << std::endl;
     } else {
-        std::cout << "square and circle not intersect" << std::endl;
+        std::cout << "square1 and circle1 not intersect" << std::endl;
+    }
+    if (circle_to_circle(c1, c2)){
+        std::cout << "circle1 belongs to the circle2" << std::endl;
+    } else {
+        std::cout << "circle1 not belongs to the circle2" << std::endl;
+    }
+    if (square_to_square(s1, s2)){
+        std::cout << "square1 belongs to the square2" << std::endl;
+    } else {
+        std::cout << "square1 not belongs to the square2" << std::endl;
+    }
+     if (square_to_circle(s1, c2)){
+        std::cout << "square1 belongs to the circle2" << std::endl;
+    } else {
+        std::cout << "square1 not belongs to the circle2" << std::endl;
+    } if (circle_to_square(c1, s2)){
+        std::cout << "circle1 belongs to the square2" << std::endl;
+    } else {
+        std::cout << "circle1 not belongs to the square2" << std::endl;
     }
 }

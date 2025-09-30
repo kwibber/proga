@@ -111,12 +111,40 @@ bool Intersection_square_circle(Square &a, Circle &b){
     y2 = b.coordinates.y - (a.coordinates.y - a.side_length);
     minl = std::min(x1 * x1, std::min(y1 * y1, std::min(x2 * x2, y2 * y2)));
     maxl = std::max(x1 * x1 + y1 * y1, std::max(x1 * x1 + y2 * y2, std::max(x2 * x2 + y1 * y1, x2 * x2 + y2 * y2)));
-    if (point_affiliation_square(p_c, a)){
-        return (minl <= b.r * b.r && maxl >= b.r * b.r);
-    } else if (point_on_line_square(p_c, a)) {
-        return maxl >= b.r * b.r;
-    } else{
-        return (minl >= b.r * b.r && maxl <= b.r * b.r);
+    return (minl >= b.r * b.r && maxl <= b.r * b.r);  
+}
+bool circle_to_circle(Circle &a, Circle &b){
+    return (a.r - b.r) == sqrt((a.coordinates.x - b.coordinates.x) * (a.coordinates.x - b.coordinates.x) + (a.coordinates.y - b.coordinates.y) * (a.coordinates.y - b.coordinates.y));
+}
+bool square_to_square(Square &a, Square &b){
+    return b.coordinates.x >= a.coordinates.x && (a.coordinates.x + a.side_length) <= (b.coordinates.x + b.side_length) &&
+    b.coordinates.y >= a.coordinates.y && (a.coordinates.y - a.side_length) <= (b.coordinates.y - b.side_length);
+}
+bool point_to_circle(Point &a, Circle &b){
+    if ((b.coordinates.x - a.x) * (b.coordinates.x - a.x) + (b.coordinates.y - a.y) * (b.coordinates.y - a.y) <= b.r * b.r){
+        return true;
     }
-    
+    else{
+        return false;
+    }
+}
+bool square_to_circle(Square &a, Circle &b){
+    Point pt1, pt2, pt3, pt4;
+    pt1.x = a.coordinates.x;
+    pt1.y = a.coordinates.y;
+    pt2.x = a.coordinates.x + a.side_length;
+    pt2.y = a.coordinates.y;
+    pt3.x = a.coordinates.x + a.side_length;
+    pt3.y = a.coordinates.y - a.side_length;
+    pt4.x = a.coordinates.x;
+    pt4.x = a.coordinates.y - a.side_length;
+    return point_to_circle(pt1, b) && point_to_circle(pt2, b) && point_to_circle(pt3, b) && point_to_circle(pt4, b);
+}
+bool circle_to_square(Circle &a, Square &b){
+    bool x1, x2, y1, y2;
+    x1 = (a.coordinates.x - b.coordinates.x) * (a.coordinates.x - b.coordinates.x) <= a.r * a.r;
+    x2 = (a.coordinates.x - b.coordinates.x - b.side_length) * (a.coordinates.x - b.coordinates.x - b.side_length) <= a.r * a.r;
+    y1 = (a.coordinates.y - b.coordinates.y) * (a.coordinates.y - b.coordinates.y) <= a.r * a.r;
+    y2 = (a.coordinates.y - b.coordinates.y + b.side_length) * (a.coordinates.y - b.coordinates.y + b.side_length) <= a.r * a.r;
+    return x1 && x2 && y1 && y2;
 }
